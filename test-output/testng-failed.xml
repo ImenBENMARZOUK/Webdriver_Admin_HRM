@@ -5,9 +5,10 @@
     <classes>
       <class name="Projet_CAIT.Webdriver_Admin_HRM.TestNG">
         <methods>
-          <include name="SupprimerTitre"/>
+          <include name="AjouterTitre"/>
+          <include name="AjouterUtilisateurAdminActif"/>
           <include name="OpenBrowser"/>
-          <include name="CloseBrowser"/>
+          <include name="Connexion"/>
         </methods>
       </class> <!-- Projet_CAIT.Webdriver_Admin_HRM.TestNG -->
     </classes>

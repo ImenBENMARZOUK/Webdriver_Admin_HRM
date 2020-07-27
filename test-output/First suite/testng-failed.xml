@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [First suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="First test(failed)">
+    <groups>
+      <run>
+        <include name="live"/>
+      </run>
+    </groups>
+    <classes>
+      <class name="Projet_CAIT.Webdriver_Admin_HRM.TestNG2Groups">
+        <methods>
+          <include name="CloseBrowser"/>
+          <include name="OpenBrowser"/>
+          <include name="AjouterTitre"/>
+        </methods>
+      </class> <!-- Projet_CAIT.Webdriver_Admin_HRM.TestNG2Groups -->
+    </classes>
+  </test> <!-- First test(failed) -->
+</suite> <!-- Failed suite [First suite] -->
