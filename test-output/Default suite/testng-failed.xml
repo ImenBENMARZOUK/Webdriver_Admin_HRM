@@ -6,7 +6,6 @@
       <class name="Projet_CAIT.Webdriver_Admin_HRM.TestNG">
         <methods>
           <include name="AjouterTitre"/>
-          <include name="AjouterUtilisateurAdminActif"/>
           <include name="OpenBrowser"/>
           <include name="Connexion"/>
         </methods>
