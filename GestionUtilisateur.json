@@ -1,0 +1,18 @@
+[	{ 
+    "NomdelEmploye" :  "Paul Lee",
+	"NomdelUtilisateur" : "IngTest3"
+    "MotdePasse" : "Azerty77*+"
+	"confirmerMotdePasse" : "Azerty77*+"
+    },
+   {
+   "NomdelEmploye" :  "Jack LePere",
+   "NomdelUtilisateur" : "IngTest4",
+   "MotdePasse" : "Azerty77*+"
+   "confirmerMotdePasse" : "Azerty77*+"
+   },
+   {
+   "NomdelEmploye" :  "John Mi",
+   "NomdelUtilisateur" : "IngTest5",
+   "MotdePasse" : "Azerty77*+"
+   "confirmerMotdePasse" : "Azerty77*+"
+   }   ]

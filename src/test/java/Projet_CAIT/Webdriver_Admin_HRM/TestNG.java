@@ -18,10 +18,21 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
 
+
+import java.io.*;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+
+
 public class TestNG {
 	protected static WebDriver driver;
-    static  int IdUtilisateur =17;
-	static int IdTitre=12;
+    static  int IdUtilisateur =34;
+	static int IdTitre=34;
+	static int IdStatut=18;
     
 	@BeforeSuite   //Pre-conditions annotations commencent toujours par @Before
   public static void OpenBrowser() {
@@ -48,78 +59,111 @@ public class TestNG {
 		   driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);   	
       
    }
-   
-	@Test (priority =1,enabled=false, dependsOnMethods = {"Connexion"})
-	  public static void AjouterUtilisateurAdminActif(){
 
-    String Utilisateur1 = "Test 1";
-    String Username1 = "FTDRV";
-      
-		  driver.findElement(By.id("menu_admin_viewAdminModule")).click();
-	      driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-	      
-		  driver.findElement(By.id("menu_admin_UserManagement")).click(); 
-		  driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		  
-		  driver.findElement(By.id("menu_admin_viewSystemUsers")).click();
-		  driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-	      driver.findElement(By.id("btnAdd")).click();
-	      
-	      //sélectionner le role Admin
-	        WebElement User_Role_select= driver.findElement(By.id("systemUser_userType"));
-	        Select details_User_Role = new Select(User_Role_select);
-	        
-	        details_User_Role.selectByValue("1");
-	        
-	      //Récupérer la valeur de l'option sélectionnée
-	        WebElement selected_value1 =details_User_Role.getFirstSelectedOption();
-	        System.out.println("Voici le role qui a été sélctionnée =" + selected_value1.getText());
-	      
-	        //remplir les champs nom emloyé et username
-	        driver.findElement(By.id("systemUser_employeeName_empName")).sendKeys(Utilisateur1);
-	        driver.findElement(By.id("systemUser_userName")).sendKeys(Username1);
-	        
-	      //sélectionner le statut
-	        WebElement statut_select= driver.findElement(By.id("systemUser_status"));
-	        Select details_statut = new Select(statut_select);
-	        
-	        details_statut.selectByValue("1");
-	        
-	      //Récupérer la valeur de l'option sélectionnée
-	        WebElement selected_value2 =details_statut.getFirstSelectedOption();
-	        System.out.println("Voici le statut qui a été sélctionnée =" + selected_value2.getText());
-	        
-	        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-	        driver.findElement(By.id("btnSave")).click();  
-	        IdUtilisateur++;
-	        
-		       boolean present;
-		       try {
-		    	   driver.findElement(By.id("ohrmList_chkSelectRecord_"+IdUtilisateur));
-		          present = true;
-		       } catch (NoSuchElementException e) {
-		          present = false;
-		       }
-	   }
-	
+	@Test (priority =1, dependsOnMethods = {"Connexion"})
+	 public static void AjouterUtilisateurAdminActif(){
+
+	 	       JSONParser jsonP = new JSONParser();
+		         try {
+		        	 JSONArray jsonAA = (JSONArray)jsonP.parse(new FileReader("C:\\Users\\lenovo\\eclipse-workspace\\Webdriver_Admin_HRM\\GestionUtilisateur.json"));
+		        	 for(int i=0; i<jsonAA.size(); i++) {
+		 String Utilisateur1 = (String) ((JSONObject)jsonAA.get(i)).get("NomdelEmploye");
+		 String NomUtilisateur = (String) ((JSONObject)jsonAA.get(i)).get("NomdelUtilisateur");
+		 String MotDePasse = (String) ((JSONObject)jsonAA.get(i)).get("MotdePasse");
+		 String ConfirmerMotDePasse = (String) ((JSONObject)jsonAA.get(i)).get("confirmerMotdePasse");
+
+
+	          driver.findElement(By.id("menu_admin_viewAdminModule")).click();
+	          driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+	          
+	          driver.findElement(By.id("menu_admin_UserManagement")).click(); 
+	          driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+	          
+	          driver.findElement(By.id("menu_admin_viewSystemUsers")).click();
+	          driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+	          driver.findElement(By.id("btnAdd")).click();
+	          
+	          //sÃ©lectionner le role Admin
+	            WebElement User_Role_select= driver.findElement(By.id("systemUser_userType"));
+	            Select details_User_Role = new Select(User_Role_select);
+	            
+	            details_User_Role.selectByValue("1");
+	            
+	          //RÃ©cupÃ©rer la valeur de l'option sÃ©lectionnÃ©e
+	            WebElement selected_value1 =details_User_Role.getFirstSelectedOption();
+	            System.out.println("Voici le role selectionne =" + selected_value1.getText());
+	          
+
+	            //remplir les champs obligatoire : nom emloyÃ© ,  non utilisateur , mot de passe , confirmer mot de passe 
+	            driver.findElement(By.id("systemUser_employeeName_empName")).sendKeys(Utilisateur1);
+	            driver.findElement(By.id("systemUser_userName")).sendKeys(NomUtilisateur);
+	            driver.findElement(By.id("systemUser_password")).sendKeys(MotDePasse);
+	            driver.findElement(By.id("systemUser_confirmPassword")).sendKeys(ConfirmerMotDePasse);
+	            
+	          //sélectionner le statut
+	            WebElement statut_select= driver.findElement(By.id("systemUser_status"));
+	            Select details_statut = new Select(statut_select);
+	            
+	            details_statut.selectByValue("1");
+	 
+
+	          //Récuperer la valeur de l'option sélectionné
+	            
+	            WebElement selected_value2 =details_statut.getFirstSelectedOption();
+	            System.out.println("Voici le statut selectionne =" + selected_value2.getText());
+	            
+	            driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+	            driver.findElement(By.id("btnSave")).click();  
+	            
+	            IdUtilisateur++;
+	               boolean present;
+	               try {
+	                   driver.findElement(By.id("ohrmList_chkSelectRecord_"+IdUtilisateur));
+	                  present = true;
+	               } catch (NoSuchElementException e) {
+	                  present = false;
+	               }
+	            
+			
+				
+				if(i < jsonAA.size() - 1) {
+		  	  	    	driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		  	  	    	driver.findElement(By.id("btnAdd")).click();
+		  	  	    driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+
+		  	  	       }
+					 }/////ici fin du boucle for
+					 }
+		         
+		         
+					  catch (FileNotFoundException e) {
+		             e.printStackTrace();
+		          } catch (IOException e) {
+		             e.printStackTrace();
+		          } catch (ParseException e) {
+		             e.printStackTrace();
+		          }
+		      		
+		}
+
 	@DataProvider(name ="testTitre")
 	
-	public static Object[] [] TitreData()
+ public static Object[] [] TitreData()
 	{
 		return new Object[] [] {
 			
-				{"TM" }	,
-				{"ING DEV" }
+				{"ING QALITE" }	,
+				{"ING DEVELOPPEMENT" },
+				//{"" },
+				{"à supprimé" }
 		};
 			
 	}	
 	
-   @Test (priority =2, dependsOnMethods = {"Connexion"},dataProvider ="testTitre" )
+   @Test (priority =2,enabled=false,dependsOnMethods = {"Connexion"},dataProvider ="testTitre" )
+   
   public static void AjouterTitre(String titre){
-
-  //String titre= "TF";   
-
-	       
+    
 	       driver.findElement(By.id("menu_admin_viewAdminModule")).click();
 	       driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 	     
@@ -132,11 +176,6 @@ public class TestNG {
 	       
 		 
 	       driver.findElement(By.id("btnAdd")).click();
-	       //driver.findElement(By.id("jobTitle_jobTitle")).click();
-	      // driver.findElement(By.id("jobTitle_jobTitle")).click();
-	       //driver.findElement(By.id("jobTitle_jobTitle")).clear();
-	       
-	       
 	       driver.findElement(By.id("jobTitle_jobTitle")).sendKeys(titre);
 	       driver.findElement(By.id("btnSave")).click();
 	       IdTitre++;
@@ -148,22 +187,101 @@ public class TestNG {
 	          present = true;
 	       } catch (NoSuchElementException e) {
 	          present = false;
-	       }
-	       
-	       
+
+	       }     
    }
-   
-   @Test (priority =3, enabled=false)
-  
+
+   @Test (priority =3,enabled=false,dependsOnMethods = {"Connexion"})
+ 
   public static void SupprimerTitre(){
 
-	       driver.findElement(By.id("ohrmList_chkSelectRecord_11")).click();
+	   
+	       driver.findElement(By.id("ohrmList_chkSelectRecord_"+IdTitre)).click();
 	       driver.findElement(By.id("btnDelete")).click();
 	       driver.findElement(By.id("dialogDeleteBtn")).click(); 	
-   	
+
+	       boolean notpresent;
+	       try {
+	          notpresent = true;
+	       } catch (NoSuchElementException e) {
+	    	   driver.findElement(By.id("ohrmList_chkSelectRecord_"+IdTitre));
+	          notpresent = false;
+
+	       } 
+	       
    }
-/**
-   @Test (priority =4,dependsOnMethods = {"AjouterTitre"})
+
+   
+	@DataProvider(name ="testStatut")
+	
+    public static Object[] [] StatutData()
+	{
+		return new Object[] [] {
+			
+				{"CDD" }	,
+				{"CDI" },
+				//{"" }
+		};
+			
+	}	
+	 @Test (priority =4,enabled=false,dependsOnMethods = {"Connexion"},dataProvider ="testStatut" )
+	 
+   public static void AjouterStatutEmploi(String statut){
+	    
+       driver.findElement(By.id("menu_admin_viewAdminModule")).click();
+       driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+     
+
+     driver.findElement(By.id("menu_admin_Job")).click(); 
+	 driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+	     
+	 driver.findElement(By.id("menu_admin_employmentStatus")).click();
+	 driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+       
+	 
+       driver.findElement(By.id("btnAdd")).click();
+       driver.findElement(By.id("empStatus_name")).sendKeys(statut );
+       driver.findElement(By.id("btnSave")).click();
+       IdStatut++;
+       driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+
+       boolean present;
+       try {
+    	   driver.findElement(By.id("ohrmList_chkSelectRecord_"+IdStatut));
+          present = true;
+       } catch (NoSuchElementException e) {
+          present = false;
+
+       }     
+}
+
+	 @Test (priority =5,enabled=false,dependsOnMethods = {"Connexion"})
+	 
+	  public static void SupprimerStatut(){
+
+		       driver.findElement(By.id("ohrmList_chkSelectRecord_"+IdStatut)).click();
+		       driver.findElement(By.id("btnDelete")).click();
+		       driver.findElement(By.id("dialogDeleteBtn")).click(); 	
+
+		       boolean notpresent;
+		       try {
+		          notpresent = true;
+		       } catch (NoSuchElementException e) {
+		    	   driver.findElement(By.id("ohrmList_chkSelectRecord_"+IdTitre));
+		          notpresent = false;
+
+		       } 
+		       
+	   } 
+   
+   
+   
+	 
+	 
+	 
+	 
+   /**
+   @Test (priority =5,dependsOnMethods = {"AjouterTitre"})
   public static void Deconnexion(){
 
 	       driver.findElement(By.id("welcome")).click();

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Suite" parallel="false">
+	<test name="Test1">
+
+		<classes>
+			<class name="Projet_CAIT.Webdriver_Admin_HRM.Connexion_TC" />
+		</classes>
+
+	</test>
+
+	<test name="Test2">
+
+		<classes>
+			<class
+				name="Projet_CAIT.Webdriver_Admin_HRM.AjoutTitre_TC" />
+		</classes>
+
+	</test>
+</suite> 
