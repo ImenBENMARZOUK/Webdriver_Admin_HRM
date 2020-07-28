@@ -32,7 +32,7 @@ public class TestNG {
 	protected static WebDriver driver;
     static  int IdUtilisateur =34;
 	static int IdTitre=34;
-	static int IdStatut=18;
+	static int IdStatut=9;
     
 	@BeforeSuite   //Pre-conditions annotations commencent toujours par @Before
   public static void OpenBrowser() {
@@ -60,7 +60,7 @@ public class TestNG {
       
    }
 
-	@Test (priority =1, dependsOnMethods = {"Connexion"})
+	@Test (priority =1,enabled=false, dependsOnMethods = {"Connexion"})
 	 public static void AjouterUtilisateurAdminActif(){
 
 	 	       JSONParser jsonP = new JSONParser();
@@ -224,7 +224,7 @@ public class TestNG {
 		};
 			
 	}	
-	 @Test (priority =4,enabled=false,dependsOnMethods = {"Connexion"},dataProvider ="testStatut" )
+	 @Test (priority =4,dependsOnMethods = {"Connexion"},dataProvider ="testStatut" )
 	 
    public static void AjouterStatutEmploi(String statut){
 	    
@@ -255,7 +255,11 @@ public class TestNG {
        }     
 }
 
-	 @Test (priority =5,enabled=false,dependsOnMethods = {"Connexion"})
+	 
+	 
+	 
+	 
+	 @Test (priority =5,dependsOnMethods = {"Connexion"})
 	 
 	  public static void SupprimerStatut(){
 
