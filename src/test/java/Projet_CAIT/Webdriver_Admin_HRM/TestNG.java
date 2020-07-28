@@ -32,7 +32,7 @@ public class TestNG {
 	protected static WebDriver driver;
     static  int IdUtilisateur =34;
 	static int IdTitre=34;
-	static int IdStatut=9;
+	static int IdStatut=27;
     
 	@BeforeSuite   //Pre-conditions annotations commencent toujours par @Before
   public static void OpenBrowser() {
@@ -154,7 +154,6 @@ public class TestNG {
 			
 				{"ING QALITE" }	,
 				{"ING DEVELOPPEMENT" },
-				//{"" },
 				{"à supprimé" }
 		};
 			
@@ -221,6 +220,7 @@ public class TestNG {
 				{"CDD" }	,
 				{"CDI" },
 				//{"" }
+				{"à supprimer" }
 		};
 			
 	}	
