@@ -6,7 +6,5 @@
 		<classes>
 			<class name="Projet_CAIT.Webdriver_Admin_HRM.TestNG" />
 		</classes>
-
 	</test>
-
 </suite> 

@@ -30,8 +30,8 @@ import org.json.simple.parser.ParseException;
 
 public class TestNG {
 	protected static WebDriver driver;
-    static  int IdUtilisateur =34;
-	static int IdTitre=34;
+    static  int IdUtilisateur =36;
+	static int IdTitre=17;
 	static int IdStatut=27;
     
 	@BeforeSuite   //Pre-conditions annotations commencent toujours par @Before
@@ -39,8 +39,8 @@ public class TestNG {
 		
 	    System.setProperty("webdriver.chrome.driver","C:\\chromedriver_win32\\chromedriver.exe");
 	    driver = new ChromeDriver();
-		driver.get("https://opensource-demo.orangehrmlive.com/");
-		//driver.get("http://127.0.0.1/orangehrm-4.3.5/symfony/web/index.php/auth/login/");
+		//driver.get("https://opensource-demo.orangehrmlive.com/");
+	    driver.get("http://127.0.0.1/orangehrm-4.3.5/symfony/web/index.php/auth/login/");
 		
 		driver.manage().window().maximize();
 		System.out.println(driver.getTitle());
@@ -53,14 +53,16 @@ public class TestNG {
 	@Test (priority =0)
   public static void Connexion(){
    	
-	       driver.findElement(By.id("txtUsername")).sendKeys("Admin");	       
-	       driver.findElement(By.id("txtPassword")).sendKeys("admin123");
+	       //driver.findElement(By.id("txtUsername")).sendKeys("Admin");	
+	       driver.findElement(By.id("txtUsername")).sendKeys("ImenTest");	
+	       driver.findElement(By.id("txtPassword")).sendKeys("Azerty77*+");
+	       //driver.findElement(By.id("txtPassword")).sendKeys("admin123");
 	       driver.findElement(By.id("btnLogin")).click(); 
 		   driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);   	
       
    }
 
-	@Test (priority =1,enabled=false, dependsOnMethods = {"Connexion"})
+	@Test (priority =1,enabled=false,dependsOnMethods = {"Connexion"})
 	 public static void AjouterUtilisateurAdminActif(){
 
 	 	       JSONParser jsonP = new JSONParser();
@@ -159,7 +161,7 @@ public class TestNG {
 			
 	}	
 	
-   @Test (priority =2,enabled=false,dependsOnMethods = {"Connexion"},dataProvider ="testTitre" )
+   @Test (priority =2,dependsOnMethods = {"Connexion"},dataProvider ="testTitre" )
    
   public static void AjouterTitre(String titre){
     
@@ -224,7 +226,7 @@ public class TestNG {
 		};
 			
 	}	
-	 @Test (priority =4,dependsOnMethods = {"Connexion"},dataProvider ="testStatut" )
+	 @Test (priority =4,enabled=false,dependsOnMethods = {"Connexion"},dataProvider ="testStatut" )
 	 
    public static void AjouterStatutEmploi(String statut){
 	    
@@ -259,7 +261,7 @@ public class TestNG {
 	 
 	 
 	 
-	 @Test (priority =5,dependsOnMethods = {"Connexion"})
+	 @Test (priority =5,enabled=false,dependsOnMethods = {"Connexion"})
 	 
 	  public static void SupprimerStatut(){
 
