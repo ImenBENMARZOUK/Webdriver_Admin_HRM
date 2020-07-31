@@ -5,10 +5,9 @@
     <classes>
       <class name="Projet_CAIT.Webdriver_Admin_HRM.TestNG">
         <methods>
+          <include name="AjouterTitre" invocation-numbers="0 1"/>
           <include name="OpenBrowser"/>
-          <include name="AjouterStatutEmploi" invocation-numbers="1"/>
           <include name="Connexion"/>
-          <include name="SupprimerStatut"/>
         </methods>
       </class> <!-- Projet_CAIT.Webdriver_Admin_HRM.TestNG -->
     </classes>

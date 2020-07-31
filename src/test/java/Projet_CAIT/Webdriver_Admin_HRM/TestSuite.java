@@ -28,19 +28,19 @@ import org.json.simple.parser.ParseException;
 
 
 
-public class TestNG {
+public class TestSuite {
 	protected static WebDriver driver;
-    static  int IdUtilisateur =36;
-	static int IdTitre=17;
-	static int IdStatut=27;
+    static  int IdUtilisateur =16;
+	static int IdTitre=12;
+	static int IdStatut=9;
     
-	@BeforeSuite   //Pre-conditions annotations commencent toujours par @Before
-  public static void OpenBrowser() {
+@BeforeSuite   //Pre-conditions annotations commencent toujours par @Before
+public static void OpenBrowser() {
 		
 	    System.setProperty("webdriver.chrome.driver","C:\\chromedriver_win32\\chromedriver.exe");
 	    driver = new ChromeDriver();
-		//driver.get("https://opensource-demo.orangehrmlive.com/");
-	    driver.get("http://127.0.0.1/orangehrm-4.3.5/symfony/web/index.php/auth/login/");
+		driver.get("https://opensource-demo.orangehrmlive.com/");
+	   //driver.get("http://127.0.0.1/orangehrm-4.3.5/symfony/web/index.php/auth/login/");
 		
 		driver.manage().window().maximize();
 		System.out.println(driver.getTitle());
@@ -48,22 +48,23 @@ public class TestNG {
 		Assert.assertEquals(title, "OrangeHRM");
 	
 }	
-
 	
-	@Test (priority =0)
-  public static void Connexion(){
+@Test (priority =0)
+
+public static void Connexion(){
    	
-	       //driver.findElement(By.id("txtUsername")).sendKeys("Admin");	
-	       driver.findElement(By.id("txtUsername")).sendKeys("ImenTest");	
-	       driver.findElement(By.id("txtPassword")).sendKeys("Azerty77*+");
-	       //driver.findElement(By.id("txtPassword")).sendKeys("admin123");
+	       driver.findElement(By.id("txtUsername")).sendKeys("Admin");
+	       driver.findElement(By.id("txtPassword")).sendKeys("admin123");
+	       //driver.findElement(By.id("txtUsername")).sendKeys("ImenTest");	
+	       //driver.findElement(By.id("txtPassword")).sendKeys("Azerty77*+");
+	     
 	       driver.findElement(By.id("btnLogin")).click(); 
 		   driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);   	
       
    }
 
-	@Test (priority =1,enabled=false,dependsOnMethods = {"Connexion"})
-	 public static void AjouterUtilisateurAdminActif(){
+@Test (priority =1,dependsOnMethods = {"Connexion"})
+public static void AjouterUtilisateurAdminActif(){
 
 	 	       JSONParser jsonP = new JSONParser();
 		         try {
@@ -148,22 +149,20 @@ public class TestNG {
 		      		
 		}
 
-	@DataProvider(name ="testTitre")
-	
- public static Object[] [] TitreData()
+@DataProvider(name ="testTitre")	
+public static Object[] [] TitreData()
 	{
 		return new Object[] [] {
 			
-				{"ING QALITE" }	,
-				{"ING DEVELOPPEMENT" },
-				{"à supprimé" }
+				{"ING Test" }	,
+				//{"ING DEVELOPPEMENT" },
+				//{"à supprimé" }
 		};
 			
 	}	
 	
-   @Test (priority =2,dependsOnMethods = {"Connexion"},dataProvider ="testTitre" )
-   
-  public static void AjouterTitre(String titre){
+@Test (priority =2,dependsOnMethods = {"Connexion"},dataProvider ="testTitre" ) 
+public static void AjouterTitre(String titre){
     
 	       driver.findElement(By.id("menu_admin_viewAdminModule")).click();
 	       driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -192,9 +191,8 @@ public class TestNG {
 	       }     
    }
 
-   @Test (priority =3,enabled=false,dependsOnMethods = {"Connexion"})
- 
-  public static void SupprimerTitre(){
+@Test (priority =3,dependsOnMethods = {"Connexion"})
+public static void SupprimerTitre(){
 
 	   
 	       driver.findElement(By.id("ohrmList_chkSelectRecord_"+IdTitre)).click();
@@ -212,23 +210,22 @@ public class TestNG {
 	       
    }
 
-   
-	@DataProvider(name ="testStatut")
-	
-    public static Object[] [] StatutData()
+@DataProvider(name ="testStatut")
+public static Object[] [] StatutData()
 	{
 		return new Object[] [] {
 			
-				{"CDD" }	,
-				{"CDI" },
+				{"CDI" }
+				//{"CDI" },
 				//{"" }
-				{"à supprimer" }
+				//{"à supprimer" }
 		};
 			
 	}	
-	 @Test (priority =4,enabled=false,dependsOnMethods = {"Connexion"},dataProvider ="testStatut" )
+
+@Test (priority =4,dependsOnMethods = {"Connexion"},dataProvider ="testStatut" )
 	 
-   public static void AjouterStatutEmploi(String statut){
+public static void AjouterStatutEmploi(String statut){
 	    
        driver.findElement(By.id("menu_admin_viewAdminModule")).click();
        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -256,15 +253,10 @@ public class TestNG {
 
        }     
 }
-
 	 
-	 
-	 
-	 
-	 @Test (priority =5,enabled=false,dependsOnMethods = {"Connexion"})
-	 
-	  public static void SupprimerStatut(){
-
+@Test (priority =5,dependsOnMethods = {"Connexion"})	 
+public static void SupprimerStatut(){
+    driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		       driver.findElement(By.id("ohrmList_chkSelectRecord_"+IdStatut)).click();
 		       driver.findElement(By.id("btnDelete")).click();
 		       driver.findElement(By.id("dialogDeleteBtn")).click(); 	
@@ -279,26 +271,18 @@ public class TestNG {
 		       } 
 		       
 	   } 
-   
-   
-   
-	 
-	 
-	 
-	 
-   /**
-   @Test (priority =5,dependsOnMethods = {"AjouterTitre"})
-  public static void Deconnexion(){
-
+ 
+@Test (priority =6,dependsOnMethods = {"Connexion"})
+public static void Deconnexion(){
+	driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 	       driver.findElement(By.id("welcome")).click();
-
+	       driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 	       driver.findElement(By.linkText("Logout")).click();
    	
    }  
   
    @AfterTest   //Post-conditions annotations commencent toujours par @After
-  public void CloseBrowser() {
+public void CloseBrowser() {
        driver.close();
    } 
-**/
 }

@@ -1,54 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="4" total="8" passed="4" failed="0" skipped="0">
+<testng-results ignored="0" total="7" passed="7" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2020-07-28T12:25:59 CEST" name="Default suite" finished-at="2020-07-28T12:26:10 CEST" duration-ms="10939">
+  <suite started-at="2020-07-31T19:27:49 CEST" name="Default suite" finished-at="2020-07-31T19:28:09 CEST" duration-ms="19302">
     <groups>
     </groups>
-    <test started-at="2020-07-28T12:25:59 CEST" name="Default test" finished-at="2020-07-28T12:26:10 CEST" duration-ms="10939">
-      <class name="Projet_CAIT.Webdriver_Admin_HRM.TestNG">
-        <test-method is-config="true" signature="OpenBrowser()[pri:0, instance:Projet_CAIT.Webdriver_Admin_HRM.TestNG@78e117e3]" started-at="2020-07-28T12:25:52 CEST" name="OpenBrowser" finished-at="2020-07-28T12:25:59 CEST" duration-ms="7381" status="PASS">
+    <test started-at="2020-07-31T19:27:49 CEST" name="Default test" finished-at="2020-07-31T19:28:09 CEST" duration-ms="19302">
+      <class name="Projet_CAIT.Webdriver_Admin_HRM.TestSuite">
+        <test-method is-config="true" signature="OpenBrowser()[pri:0, instance:Projet_CAIT.Webdriver_Admin_HRM.TestSuite@363ee3a2]" started-at="2020-07-31T19:27:42 CEST" name="OpenBrowser" finished-at="2020-07-31T19:27:49 CEST" duration-ms="7895" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- OpenBrowser -->
-        <test-method signature="Connexion()[pri:0, instance:Projet_CAIT.Webdriver_Admin_HRM.TestNG@78e117e3]" started-at="2020-07-28T12:25:59 CEST" name="Connexion" finished-at="2020-07-28T12:26:01 CEST" duration-ms="1465" status="PASS">
+        <test-method signature="Connexion()[pri:0, instance:Projet_CAIT.Webdriver_Admin_HRM.TestSuite@363ee3a2]" started-at="2020-07-31T19:27:50 CEST" name="Connexion" finished-at="2020-07-31T19:27:54 CEST" duration-ms="4383" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Connexion -->
-        <test-method signature="AjouterTitre(java.lang.String)[pri:2, instance:Projet_CAIT.Webdriver_Admin_HRM.TestNG@78e117e3]" started-at="2020-07-28T12:26:01 CEST" name="AjouterTitre" data-provider="testTitre" finished-at="2020-07-28T12:26:04 CEST" depends-on-methods="Projet_CAIT.Webdriver_Admin_HRM.TestNG.Connexion" duration-ms="3196" status="PASS">
+        <test-method signature="AjouterUtilisateurAdminActif()[pri:1, instance:Projet_CAIT.Webdriver_Admin_HRM.TestSuite@363ee3a2]" started-at="2020-07-31T19:27:54 CEST" name="AjouterUtilisateurAdminActif" finished-at="2020-07-31T19:27:59 CEST" depends-on-methods="Projet_CAIT.Webdriver_Admin_HRM.TestSuite.Connexion" duration-ms="4903" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AjouterUtilisateurAdminActif -->
+        <test-method signature="AjouterTitre(java.lang.String)[pri:2, instance:Projet_CAIT.Webdriver_Admin_HRM.TestSuite@363ee3a2]" started-at="2020-07-31T19:27:59 CEST" name="AjouterTitre" data-provider="testTitre" finished-at="2020-07-31T19:28:02 CEST" depends-on-methods="Projet_CAIT.Webdriver_Admin_HRM.TestSuite.Connexion" duration-ms="3298" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[ING QALITE]]>
+                <![CDATA[ING Test]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- AjouterTitre -->
-        <test-method signature="AjouterTitre(java.lang.String)[pri:2, instance:Projet_CAIT.Webdriver_Admin_HRM.TestNG@78e117e3]" started-at="2020-07-28T12:26:04 CEST" name="AjouterTitre" data-provider="testTitre" finished-at="2020-07-28T12:26:07 CEST" depends-on-methods="Projet_CAIT.Webdriver_Admin_HRM.TestNG.Connexion" duration-ms="2780" status="PASS">
+        <test-method signature="SupprimerTitre()[pri:3, instance:Projet_CAIT.Webdriver_Admin_HRM.TestSuite@363ee3a2]" started-at="2020-07-31T19:28:02 CEST" name="SupprimerTitre" finished-at="2020-07-31T19:28:03 CEST" depends-on-methods="Projet_CAIT.Webdriver_Admin_HRM.TestSuite.Connexion" duration-ms="1177" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- SupprimerTitre -->
+        <test-method signature="AjouterStatutEmploi(java.lang.String)[pri:4, instance:Projet_CAIT.Webdriver_Admin_HRM.TestSuite@363ee3a2]" started-at="2020-07-31T19:28:03 CEST" name="AjouterStatutEmploi" data-provider="testStatut" finished-at="2020-07-31T19:28:06 CEST" depends-on-methods="Projet_CAIT.Webdriver_Admin_HRM.TestSuite.Connexion" duration-ms="3017" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[ING DEVELOPPEMENT]]>
+                <![CDATA[CDI]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- AjouterTitre -->
-        <test-method signature="AjouterTitre(java.lang.String)[pri:2, instance:Projet_CAIT.Webdriver_Admin_HRM.TestNG@78e117e3]" started-at="2020-07-28T12:26:07 CEST" name="AjouterTitre" data-provider="testTitre" finished-at="2020-07-28T12:26:10 CEST" depends-on-methods="Projet_CAIT.Webdriver_Admin_HRM.TestNG.Connexion" duration-ms="3447" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[à supprimé]]>
-              </value>
-            </param>
-          </params>
+        </test-method> <!-- AjouterStatutEmploi -->
+        <test-method signature="SupprimerStatut()[pri:5, instance:Projet_CAIT.Webdriver_Admin_HRM.TestSuite@363ee3a2]" started-at="2020-07-31T19:28:06 CEST" name="SupprimerStatut" finished-at="2020-07-31T19:28:07 CEST" depends-on-methods="Projet_CAIT.Webdriver_Admin_HRM.TestSuite.Connexion" duration-ms="1131" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- AjouterTitre -->
-      </class> <!-- Projet_CAIT.Webdriver_Admin_HRM.TestNG -->
+        </test-method> <!-- SupprimerStatut -->
+        <test-method signature="Deconnexion()[pri:6, instance:Projet_CAIT.Webdriver_Admin_HRM.TestSuite@363ee3a2]" started-at="2020-07-31T19:28:07 CEST" name="Deconnexion" finished-at="2020-07-31T19:28:09 CEST" depends-on-methods="Projet_CAIT.Webdriver_Admin_HRM.TestSuite.Connexion" duration-ms="1184" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Deconnexion -->
+        <test-method is-config="true" signature="CloseBrowser()[pri:0, instance:Projet_CAIT.Webdriver_Admin_HRM.TestSuite@363ee3a2]" started-at="2020-07-31T19:28:09 CEST" name="CloseBrowser" finished-at="2020-07-31T19:28:09 CEST" duration-ms="145" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- CloseBrowser -->
+      </class> <!-- Projet_CAIT.Webdriver_Admin_HRM.TestSuite -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

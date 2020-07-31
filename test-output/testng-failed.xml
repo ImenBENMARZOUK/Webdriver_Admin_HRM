@@ -3,13 +3,14 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="Projet_CAIT.Webdriver_Admin_HRM.TestNG">
+      <class name="Projet_CAIT.Webdriver_Admin_HRM.TestSuite">
         <methods>
-          <include name="AjouterTitre" invocation-numbers="0"/>
-          <include name="OpenBrowser"/>
           <include name="Connexion"/>
+          <include name="OpenBrowser"/>
+          <include name="AjouterUtilisateurAdminActif"/>
+          <include name="CloseBrowser"/>
         </methods>
-      </class> <!-- Projet_CAIT.Webdriver_Admin_HRM.TestNG -->
+      </class> <!-- Projet_CAIT.Webdriver_Admin_HRM.TestSuite -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
