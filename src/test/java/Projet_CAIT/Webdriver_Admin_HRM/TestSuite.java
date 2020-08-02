@@ -30,9 +30,9 @@ import org.json.simple.parser.ParseException;
 
 public class TestSuite {
 	protected static WebDriver driver;
-    static  int IdUtilisateur =16;
-	static int IdTitre=12;
-	static int IdStatut=9;
+    static  int IdUtilisateur =32;
+	static int IdTitre=24;
+	static int IdStatut=23;
     
 @BeforeSuite   //Pre-conditions annotations commencent toujours par @Before
 public static void OpenBrowser() {
@@ -154,7 +154,7 @@ public static Object[] [] TitreData()
 	{
 		return new Object[] [] {
 			
-				{"ING Test" }	,
+				{"ING Test" }
 				//{"ING DEVELOPPEMENT" },
 				//{"à supprimé" }
 		};
@@ -216,11 +216,9 @@ public static Object[] [] StatutData()
 		return new Object[] [] {
 			
 				{"CDI" }
-				//{"CDI" },
+				//{"CDDD" },
 				//{"" }
-				//{"à supprimer" }
-		};
-			
+		};			
 	}	
 
 @Test (priority =4,dependsOnMethods = {"Connexion"},dataProvider ="testStatut" )
